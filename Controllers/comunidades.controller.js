@@ -4,7 +4,7 @@ const { QueryTypes } = require('sequelize');
 
 const getComunidades = async (req, res) => {
     try {
-        const comunidades  = await sequelize.query(`SELECT * FROM tbl_comunidades`, { type: QueryTypes.SELECT });
+        const comunidades  = await sequelize.query(`SELECT * FROM comunidadescompletas`, { type: QueryTypes.SELECT });
         res.json({data:comunidades});
     } catch (error) {
         console.error(error);
@@ -65,7 +65,7 @@ const deleteComunidad = async (req, res) => {
 }
 const getDistritos = async (req, res) => {
     try {
-        const distritos  = await sequelize.query(`CALL ListarDistritos()`, { type: QueryTypes.SELECT });
+        const distritos  = await sequelize.query(`SELECT * FROM tbl_distritos`, { type: QueryTypes.SELECT });
         res.json({
             data: distritos
         });
