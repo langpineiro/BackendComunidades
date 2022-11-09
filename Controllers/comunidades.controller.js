@@ -4,7 +4,7 @@ const { QueryTypes } = require('sequelize');
 
 const getComunidades = async (req, res) => {
     try {
-        const comunidades  = await sequelize.query(`CALL ListarComunidadesPorNombres()`, { type: QueryTypes.SELECT });
+        const comunidades  = await sequelize.query(`SELECT * FROM tbl_comunidades`, { type: QueryTypes.SELECT });
         res.json({data:comunidades});
     } catch (error) {
         console.error(error);
@@ -12,7 +12,7 @@ const getComunidades = async (req, res) => {
 }
 const getDepartamentos = async (req, res) => {
     try {
-        const departamentos  = await sequelize.query(`CALL ListarDepartamento()`, { type: QueryTypes.SELECT });
+        const departamentos  = await sequelize.query(`SELECT * FROM tbl_departamentos`, { type: QueryTypes.SELECT });
         res.json({data: departamentos});
     } catch (error) {
         console.error(error);
@@ -21,7 +21,7 @@ const getDepartamentos = async (req, res) => {
 const getMunicipios = async (req, res) => {
     try {
         const {id} = req.params; 
-        const departamentos  = await sequelize.query(`CALL MunicipiosPorDepa(${id})`, { type: QueryTypes.SELECT });
+        const departamentos  = await sequelize.query(`SELECT * FROM tbl_municipios WHERE coddepartamento = ${id}`, { type: QueryTypes.SELECT });
         res.json({data: departamentos});
     } catch (error) {
         console.error(error);
@@ -29,7 +29,7 @@ const getMunicipios = async (req, res) => {
 }
 const getCategorias = async (req, res) => {
     try {
-        const categorias  = await sequelize.query(`CALL ListarCategorias()`, { type: QueryTypes.SELECT });
+        const categorias  = await sequelize.query(`SELECT * FROM tbl_cat`, { type: QueryTypes.SELECT });
         res.json({data: categorias});
     } catch (error) {
         console.error(error);
@@ -37,6 +37,7 @@ const getCategorias = async (req, res) => {
 }
 const saveComunidad = async (req, res) => {
     const {id,comunidad,coddepto,codmuni,codcategoria,coddistrito} =req.body
+    console.log(id,comunidad,coddepto,codmuni,codcategoria,coddistrito);
     try {
         await sequelize.query(`CALL InsertarComunidad('${id}','${comunidad}', ${coddepto}, ${codmuni}, ${codcategoria}, ${coddistrito})`, { type: QueryTypes.SELECT });
         res.json({msg:"la comunidad ha sido agregada"});
