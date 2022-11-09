@@ -8,7 +8,7 @@ const {getComunidades, saveComunidad, updateComunidad, deleteComunidad, getConsu
 router.get('/',getComunidades);
 router.post('/guardar', saveComunidad);
 router.put('/editar', updateComunidad );
-router.delete('/eliminar/', deleteComunidad );
+router.delete('/eliminar/:condicion', deleteComunidad );
 router.get('/departamentos', getDepartamentos); 
 router.get('/municipiosSegunDepa/:id', getMunicipios);
 router.get('/categorias', getCategorias);

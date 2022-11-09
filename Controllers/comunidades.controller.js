@@ -55,7 +55,7 @@ const updateComunidad = async (req, res) => {
     }
 }
 const deleteComunidad = async (req, res) => {
-    const {condicion} = req.query;
+    const {condicion} = req.params;
     try {
         await sequelize.query(`CALL EliminarComunidad('${condicion}')`, { type: QueryTypes.SELECT });
         res.json({msg:"la comunidad ha sido eliminada"});
