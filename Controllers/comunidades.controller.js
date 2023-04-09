@@ -10,6 +10,7 @@ const getComunidades = async (req, res) => {
         console.error(error);
     }
 }
+
 const getDepartamentos = async (req, res) => {
     try {
         const departamentos  = await sequelize.query(`SELECT * FROM tbl_departamentos`, { type: QueryTypes.SELECT });
